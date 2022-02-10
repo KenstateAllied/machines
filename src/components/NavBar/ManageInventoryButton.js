@@ -1,8 +1,13 @@
 import React from "react";
 
 function ManageInventoryButton(props) {
+
+  function onClick() {
+    props.updatePage("InventoryManagementDisplay");
+  }
+
   return (
-    <button>Manage Inventory</button> // Needs function that changes state
+    <button onClick={onClick}>Manage Inventory</button>
   );
 }
 

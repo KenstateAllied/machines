@@ -5,7 +5,7 @@ function AddToCartForm(props){
     <React.Fragment>
       <form onSubmit={null}>
         <input/>
-        <button></button>
+        <button>Add to Cart</button>
       </form>
     </React.Fragment>
   )

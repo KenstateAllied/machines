@@ -14,13 +14,15 @@ const categories = [
 function NavBar(props) {
   return (
     <React.Fragment>
-        <LogoButton updateCategory={props.updateCategory} />
+        <LogoButton updateCategory={props.updateCategory} 
+          updatePage={props.updatePage} />
         {categories.map(category => 
           <CategoryButton category={category}
             updateCategory={props.updateCategory} 
+            updatePage={props.updatePage}
             key={v4()} />
         )}
-        <ManageInventoryButton />
+        <ManageInventoryButton updatePage={props.updatePage} />
     </React.Fragment>
   );
 }

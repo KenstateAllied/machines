@@ -4,7 +4,7 @@ import RemoveCartButton from './RemoveFromCartButton';
 
 function CartItem(props){
   const CartItemStyle = {
-    backgroundColor = 'red',
+    backgroundColor: 'red',
     padding:'1em'
   }
   return(

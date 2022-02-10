@@ -5,6 +5,7 @@ function LogoButton(props) {
 
   function onButtonClick(){
     props.updateCategory("All");
+    props.updatePage("StoreDisplay");
   }
 
   const buttonStyles = {

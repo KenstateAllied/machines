@@ -5,6 +5,7 @@ import InventoryManagementDisplay from "./InventoryManagementDisplay/InventoryMa
 import AddProductForm from "./AddProductForm";
 import EditProductForm from "./EditProductForm";
 import {v4} from "uuid";
+import Container from 'react-bootstrap/Container';
 
 class StateControl extends React.Component {
   constructor(props) {
@@ -90,24 +91,28 @@ class StateControl extends React.Component {
     let currentPage = null;
     switch (this.state.currentPage) {
       case 'StoreDisplay':
-        currentPage = <StoreDisplay />
+        currentPage = <StoreDisplay stock={this.state.stock} 
+          cart={this.state.cart} />
         break;
       case 'InventoryManagementDisplay':
-        currentPage = <InventoryManagementDisplay />
+        currentPage = <InventoryManagementDisplay stock={this.state.stock} />
         break;
       case 'AddProductForm':
         currentPage = <AddProductForm addProduct={this.addNewProductToStock} />
         break;
       case 'EditProductForm':
-        currentPage = <EditProductForm />
+        currentPage = <EditProductForm stock={this.state.stock} />
         break;
       default:
         break;
     }
     return (
       <React.Fragment>
-        <NavBar updateCategory={this.updateCategory} />
-        {currentPage}
+        <Container>
+          <NavBar updateCategory={this.updateCategory} 
+            updatePage = {this.updateCurrentPage} />
+          {currentPage}
+        </Container>
       </React.Fragment>
     );
   }
