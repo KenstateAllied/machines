@@ -2,7 +2,7 @@ import React from 'react';
 
 function EditProductForm() {
   return (
-    <p>placeholder</p>
+    <p>placeholder for EditProductForm</p>
   );
 }
 

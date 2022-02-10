@@ -6,7 +6,7 @@ function ProductSelectPane(props){
     border: '1px solid black',
     padding: '1em'
   }
-  
+
   return (
     <div style={ProductSelectPaneStyle}>
       <ProductSelectItem/>
