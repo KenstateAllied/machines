@@ -4,7 +4,11 @@ function AddToCartForm(props){
   return (
     <React.Fragment>
       <form onSubmit={null}>
-        <input/>
+        <input
+        type='number'
+        name='qty'
+        min='1'
+        placeholder='Qty'/>
         <button>Add to Cart</button>
       </form>
     </React.Fragment>
