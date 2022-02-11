@@ -7,19 +7,23 @@ function AddProductForm(props){
 
   function handleAddProductFormSubmission(event) {
     event.preventDefault();
-    
-    const inputs = event.target;
+
+    const insertDecimal = (price) => {
+      return price.slice(0, price.length-2) + '.' + price.slice(price.length-2);
+    };
+
     const product = {
       id: v4(),
-      name: inputs.name.value,
-      price: inputs.price.value.replace('.', ''),
-      qty: inputs.qty.value,
-      category: inputs.category.value,
-      description: inputs.category.value,
+      name: event.target.name.value,
+      price: insertDecimal(event.target.price.value.replace('.', '')),
+      qty: event.target.qty.value,
+      category: event.target.category.value,
+      description: event.target.description.value,
       image: null
     };
 
-    props.AddProduct(product);
+    props.addProduct(product);
+    props.updatePage("InventoryManagementDisplay");
   }
 
   return (
@@ -32,14 +36,17 @@ function AddProductForm(props){
         <input
           type='number'
           name='price'
+          min='0'
+          step='.01'
           placeholder='Price' />
         <input
-          type='text'
+          type='number'
           name='qty'
+          min='0'
           placeholder='Quantity'/>
-        <select>
+        <select name='category'>
           <option value='Food'>Cat Shaped Food</option> 
-          <option value='Accessories'>Cat Bling</option> 
+          <option value='Accessories'>Cat Accessories</option> 
           <option value='Clothing'>Cat Clothes</option>
           </select>
         <textarea
