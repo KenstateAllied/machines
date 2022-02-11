@@ -2,7 +2,7 @@ import React from "react";
 
 function EditProductButton(props) {
   return (
-    <button>placeholder</button>
+    <button>Edit</button>
   );
 }
 
