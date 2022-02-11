@@ -12,15 +12,34 @@ class StateControl extends React.Component {
     super(props);
     this.state = {
       currentPage: "StoreDisplay",
-      currentCategory: "all",
+      currentCategory: "All",
+      currentProduct: null,
       stock: [
         {
           id: v4(),
           name: 'Cat T-shirt',
-          price: 999,     //In pennies to avoid float errors
+          price: 9.99,     //In pennies to avoid float errors
           qty: 10,
           category: 'Clothing',
-          description: 'lorem ipsum',
+          description: 'A sweet cat t-shirt. Meow, baby!',
+          image: null     //image object reference
+        },
+        {
+          id: v4(),
+          name: 'Cat Mug',
+          price: 7.99,     //In pennies to avoid float errors
+          qty: 10,
+          category: 'Accessories',
+          description: 'You can use this cute cat-shaped mug to drink milk, or catnip tea. Or whatever.',
+          image: null     //image object reference
+        },
+        {
+          id: v4(),
+          name: 'Cat Gruel',
+          price: 14.99,     //In pennies to avoid float errors
+          qty: 20,
+          category: 'Food',
+          description: 'No cats were harmed in the making of this gruel. #crueltyfreegruel',
           image: null     //image object reference
         }
       ],
@@ -34,6 +53,10 @@ class StateControl extends React.Component {
 
   updateCategory = (category) => {
     this.setState({currentCategory: category});
+  };
+  
+  updateCurrentProduct = (product) => {
+    this.setState({currentProduct: product});
   };
 
   // functions to update stock / cart
@@ -81,24 +104,36 @@ class StateControl extends React.Component {
   };
 
   editProduct = (product) => {
-    let newStock = [...this.state.stock];
-    let stockProduct = newStock.find(o => o.id === product.id);
-    stockProduct = product;
+    let newStock = this.state.stock
+      .filter(p => p.id !== product.id)
+      .concat(product);
     this.setState({stock: newStock});
   };
 
   render() {  //Add properties as needed
     let currentPage = null;
+    let categoryStock = null;
+    
+    if (this.state.currentCategory === "All") {
+      categoryStock = this.state.stock;
+    } else {
+      categoryStock = this.state.stock.filter(p => p.category === this.state.currentCategory);
+    }
+
     switch (this.state.currentPage) {
       case 'StoreDisplay':
-        currentPage = <StoreDisplay stock={this.state.stock} 
-          cart={this.state.cart} />
+        currentPage = <StoreDisplay categoryStock={categoryStock} 
+          cart={this.state.cart} 
+          selectedProduct={this.state.currentProduct}
+          updateSelectedProduct={this.updateCurrentProduct} />
         break;
       case 'InventoryManagementDisplay':
-        currentPage = <InventoryManagementDisplay stock={this.state.stock} />
+        currentPage = <InventoryManagementDisplay stock={this.state.stock} 
+          updatePage={this.updateCurrentPage} />
         break;
       case 'AddProductForm':
-        currentPage = <AddProductForm addProduct={this.addNewProductToStock} />
+        currentPage = <AddProductForm addProduct={this.addNewProductToStock} 
+        updatePage={this.updateCurrentPage} />
         break;
       case 'EditProductForm':
         currentPage = <EditProductForm stock={this.state.stock} />
