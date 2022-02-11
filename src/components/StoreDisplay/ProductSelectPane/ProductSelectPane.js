@@ -3,14 +3,20 @@ import ProductSelectItem from './ProductSelectItem.js'
 
 function ProductSelectPane(props){
   const ProductSelectPaneStyle = {
-    border: '1px solid black',
-    padding: '1em'
+    border: '1px solid #C0FDFF',
+    padding: '1em',
+    backgroundColor: '#C0FDFF'
   }
 
   return (
-    <div style={ProductSelectPaneStyle}>
-      <ProductSelectItem/>
-    </div>
+    <React.Fragment>
+      <div style={ProductSelectPaneStyle}>
+        {props.categoryStock.map(product => 
+          <ProductSelectItem product={product} 
+            updateSelectedProduct={props.updateSelectedProduct}/>
+        )}
+      </div>
+    </React.Fragment>
   );
 }
 
