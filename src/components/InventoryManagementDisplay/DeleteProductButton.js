@@ -2,7 +2,7 @@ import React from "react";
 
 function DeleteProductButton(props){
   return (
-    <button>placeholder</button>
+    <button>Delete Product</button>
   );
 }
 
