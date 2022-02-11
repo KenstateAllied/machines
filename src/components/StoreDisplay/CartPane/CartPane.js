@@ -5,7 +5,8 @@ import CheckoutButton from "./CheckoutButton";
 function CartPane(props) {
   const CartPaneStyle = {
     border: '1px solid orange',
-    padding: '1em'
+    padding: '1em',
+    backgroundColor: '#E3F6FF'
   }
   return (
     <React.Fragment>
