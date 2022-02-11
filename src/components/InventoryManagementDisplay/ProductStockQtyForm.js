@@ -4,7 +4,11 @@ function ProductStockQtyForm() {
   return (
     <React.Fragment>
       <form onSubmit={null}>
-        <input />
+        <input
+          type='number'
+          name='qty'
+          min='0'
+          placeholder='Qty'/>
         <button type='submit'>Add Stock</button>
       </form>
     </React.Fragment>
